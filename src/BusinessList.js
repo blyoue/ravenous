@@ -7,8 +7,8 @@ function BusinessList({ businesses }) {
         <>
             <div className='flex justify-center bg-stone-100'>
                 <div className='grid sm:grid-cols-2 md:grid-cols-3 w-full h-full max-w-screen-lg justify-center bg-stone-100 py-8 flex-wrap p-auto'>
-                    {businesses.map((business) => (
-                        <div key={business.id} className="flex justify-center">
+                    {businesses.map((business, index) => (
+                        <div key={index} className="flex justify-center">
                             <Business 
                                 name={business.name} 
                                 address={business.address} 
