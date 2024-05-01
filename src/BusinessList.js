@@ -2,45 +2,26 @@ import React from 'react';
 import Business from './Business';
 
 
-function BusinessList() {
-    const businesses = [
-        {
-            name: "a",
-            address: "a",
-            city: "a",
-            state: "a",
-            zipcode: "a",
-            category: "a",
-            rating: "a",
-            review: "a", 
-            count: "a"
-        },
-        {
-            name: "b",
-            address: "b",
-            city: "b",
-            state: "b",
-            zipcode: "b",
-            category: "b",
-            rating: "b",
-            review: "b", 
-            count: "b"
-        }
-    ];
+function BusinessList({ businesses }) {
     return (
         <>
-            <div>
-                {businesses.map((business) => (
-                        <Business 
-                        name={business.name} 
-                        address={business.address} 
-                        city={business.city}
-                        state={business.state}
-                        zipcode={business.zipcode}
-                        category={business.category}
-                        rating={business.rating}
-                        review={business.review} />
-                ))}
+            <div className='flex justify-center bg-stone-100'>
+                <div className='grid sm:grid-cols-2 md:grid-cols-3 w-full h-full max-w-screen-lg justify-center bg-stone-100 py-8 flex-wrap p-auto'>
+                    {businesses.map((business) => (
+                        <div key={business.id} className="flex justify-center">
+                            <Business 
+                                name={business.name} 
+                                address={business.address} 
+                                city={business.city}
+                                state={business.state}
+                                zipcode={business.zipcode}
+                                category={business.category}
+                                rating={business.rating}
+                                review={business.review} 
+                            />
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
     )
