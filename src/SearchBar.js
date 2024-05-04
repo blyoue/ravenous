@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 
 function SearchBar() {
-    const [term, SetTerm] = useState("");
+    const [term, setTerm] = useState("");
     const [location, setLocation] = useState("");
     const [option, setOption] = useState("match");
 
     const handleTermChange = (e) => {
-        SetTerm(e.target.value);
+        setTerm(e.target.value);
     };
     const handleLocation = (e) => {
         setLocation(e.target.value);
@@ -17,9 +17,12 @@ function SearchBar() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-
+        console.log(`Searching Yelp with ${term}, ${location}, ${option}`)
+        setTerm("")
+        setLocation("")
+        setOption("match");
     };
+
     
     return (
         <div className='bg-blueza h-bb bg-center bg-cover flex flex-col font-bold text-white'>
@@ -28,7 +31,7 @@ function SearchBar() {
             </div>
             <div className='flex flex-col flex-grow justify-center items-center'>
                 <form action="" className='w-3/5 flex flex-col justify-center items-center' onSubmit={handleSubmit}>
-                    <ul className='flex flex-row w-3/5 h-12 px-16 my-8 mx-auto justify-between font-semibold'>
+                    <ul className='min-w-96 flex flex-row w-3/5 h-12 px-16 my-8 mx-auto justify-between font-semibold'>
                         <li className='inline-flex justify-center items-center w-1/3 border-b border-white has-[:checked]:border-tan'>
                             <input 
                                 type="radio" 

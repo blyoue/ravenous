@@ -36,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "npm-start-command": "^1.0.1",
     "tailwindcss": "^3.4.3"
   }
 }
