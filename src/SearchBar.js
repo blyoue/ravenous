@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import Busfetch from './utils/Busfetch'; 
 
-
-function SearchBar() {
+function SearchBar({ onSearch }) {
     const [term, setTerm] = useState("");
     const [location, setLocation] = useState("");
-    const [option, setOption] = useState("match");
+    const [option, setOption] = useState("best_match");
 
     const handleTermChange = (e) => {
         setTerm(e.target.value);
@@ -15,15 +15,20 @@ function SearchBar() {
     const handleSort = (e) => {
         setOption(e.target.value);
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(`Searching Yelp with ${term}, ${location}, ${option}`)
-        setTerm("")
-        setLocation("")
-        setOption("match");
+        console.log(term, location, option);
+        try {
+            const businesses = await Busfetch(term, location, option);
+            onSearch(businesses);
+        }
+        catch (error) {console.log(error)}
+
+        setTerm("");
+        setLocation("");
+        setOption("best_match");
     };
 
-    
     return (
         <div className='bg-blueza h-bb bg-center bg-cover flex flex-col font-bold text-white'>
             <div className='h-16 bg-tan py-auto flex justify-center items-center'>
@@ -36,11 +41,11 @@ function SearchBar() {
                             <input 
                                 type="radio" 
                                 name="sort" 
-                                value="match" 
+                                value="best_match" 
                                 id="match" 
                                 className='peer hidden' 
                                 onChange={handleSort} 
-                                checked={option === "match"}
+                                checked={option === "best_match"}
                                 required
                             />
                             <label htmlFor="match" className='w-20 text-wrap hover:text-stone-300 peer-checked:shadow-2xl peer-checked:text-tan peer-checked:font-bold'>Best Match</label>
@@ -49,11 +54,11 @@ function SearchBar() {
                             <input 
                                 type="radio" 
                                 name="sort" 
-                                value="rate" 
+                                value="rating" 
                                 id="rate" 
                                 className='peer hidden'
                                 onChange={handleSort}
-                                checked={option ==="rate"}
+                                checked={option ==="rating"}
                             />
                             <label htmlFor="rate" className='w-20 text-wrap hover:text-stone-300 peer-checked:shadow-2xl peer-checked:text-tan peer-checked:font-bold'>Highest Rated</label>
                         </li>
@@ -61,11 +66,11 @@ function SearchBar() {
                             <input 
                                 type="radio" 
                                 name="sort" 
-                                value="review" 
+                                value="review_count" 
                                 id="review" 
                                 className='peer hidden'
                                 onChange={handleSort}
-                                checked={option ==="review"}
+                                checked={option ==="review_count"}
                             />
                             <label htmlFor="review" className='w-20 text-wrap hover:text-stone-300 peer-checked:shadow-2xl peer-checked:text-tan peer-checked:font-bold'>Most Reviewed</label><br /><br />
                         </li>

@@ -1,73 +1,17 @@
 import './App.css';
 import SearchBar from './SearchBar';
 import BusinessList from './BusinessList';
+import React, { useState } from 'react';
 
 function App() {
-  const businesses = [
-    {
-        name: "MarginOtto Pizzeria",
-        address: "1010 Paddington Way",
-        city: "Bordertown",
-        state: "NY",
-        zipcode: "10101",
-        category: "Italian",
-        rating: "4.5",
-        review: "90", 
-    },
-    {
-        name: "MarginOtto Pizzeria",
-        address: "1010 Paddington Way",
-        city: "Bordertown",
-        state: "NY",
-        zipcode: "10101",
-        category: "Italian",
-        rating: "4.5",
-        review: "90", 
-    },
-    {
-        name: "MarginOtto Pizzeria",
-        address: "1010 Paddington Way",
-        city: "Bordertown",
-        state: "NY",
-        zipcode: "10101",
-        category: "Italian",
-        rating: "4.5",
-        review: "90", 
-    },
-    {
-        name: "MarginOtto Pizzeria",
-        address: "1010 Paddington Way",
-        city: "Bordertown",
-        state: "NY",
-        zipcode: "10101",
-        category: "Italian",
-        rating: "4.5",
-        review: "90", 
-    },
-    {
-        name: "MarginOtto Pizzeria",
-        address: "1010 Paddington Way",
-        city: "Bordertown",
-        state: "NY",
-        zipcode: "10101",
-        category: "Italian",
-        rating: "4.5",
-        review: "90", 
-    },
-    {
-        name: "MarginOtto Pizzeria",
-        address: "1010 Paddington Way",
-        city: "Bordertown",
-        state: "NY",
-        zipcode: "10101",
-        category: "Italian",
-        rating: "4.5",
-        review: "90", 
-    }
-];
+  const [businesses, setBusinesses] = useState([]);
+  const handleSearch = (result) => {
+    
+    setBusinesses(result);
+  }
   return (
-    <div className="App">
-      <SearchBar />
+    <div className="App bg-stone-100">
+      <SearchBar onSearch={handleSearch} />
       <BusinessList businesses={businesses}/>
     </div>
   );
