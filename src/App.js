@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 function App() {
   const [businesses, setBusinesses] = useState([]);
   const handleSearch = (result) => {
-    
     setBusinesses(result);
   }
   return (

@@ -22,7 +22,10 @@ function SearchBar({ onSearch }) {
             const businesses = await Busfetch(term, location, option);
             onSearch(businesses);
         }
-        catch (error) {console.log(error)}
+        catch (error) {
+            console.log(error);
+            onSearch([]);
+        }
 
         setTerm("");
         setLocation("");
